@@ -1,4 +1,4 @@
-# Dataset files (large, and not ours to redistribute)
+# Dataset files (large)
 data/*.csv
 data/*.zip
 data/*.xlsx
