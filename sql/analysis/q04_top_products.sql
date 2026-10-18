@@ -7,7 +7,9 @@
 SELECT
     clean_sales.StockCode,
     product_lookup.ProductName,
-    SUM(clean_sales.line_total) AS net_revenue
+    SUM(clean_sales.line_total)                              AS net_revenue,
+    SUM(clean_sales.Quantity)                                AS net_units_sold,
+    ROUND(SUM(clean_sales.line_total) / SUM(clean_sales.Quantity), 2) AS avg_net_unit_price
 FROM online_retail_clean AS clean_sales
 JOIN product_lookup
     ON clean_sales.StockCode = product_lookup.StockCode
@@ -19,7 +21,9 @@ LIMIT 10;
 SELECT
     clean_sales.StockCode,
     product_lookup.ProductName,
-    SUM(clean_sales.Quantity) AS net_units_sold
+    SUM(clean_sales.Quantity)                                AS net_units_sold,
+    SUM(clean_sales.line_total)                              AS net_revenue,
+    ROUND(SUM(clean_sales.line_total) / SUM(clean_sales.Quantity), 2) AS avg_net_unit_price
 FROM online_retail_clean AS clean_sales
 JOIN product_lookup
     ON clean_sales.StockCode = product_lookup.StockCode
