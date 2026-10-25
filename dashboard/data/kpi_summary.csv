@@ -1,0 +1,2 @@
+customers,orders,orders_without_customer,avg_gross_order_value,median_gross_order_value,largest_order_value
+4333,19771,1371,505.87,302.20,52940.94

@@ -1,8 +1,10 @@
 # Online Retail Sales Analysis: Cleaning, Profiling and Customer Insights in MySQL
 
-An end-to-end SQL analysis of a UK online retailer's transactions (Dec 2010 to Dec 2011). The project profiles and cleans a messy transactional dataset with every decision documented and auditable, then answers ten business questions on sales, returns, products, countries, customers and retention.
+An end-to-end SQL analysis of a UK online retailer's transactions (Dec 2010 to Dec 2011). The project profiles and cleans a messy transactional dataset with every decision documented and auditable, answers ten business questions on sales, returns, products, countries, customers and retention, and presents the results in a four-page Power BI dashboard.
 
-**Status:** complete. Data profiling, cleaning and all ten business questions are done.
+**Status:** complete. Data profiling, cleaning, all ten business questions and the dashboard are done.
+
+![Dashboard overview](dashboard/overview.png)
 
 ## Dataset
 
@@ -15,8 +17,8 @@ An end-to-end SQL analysis of a UK online retailer's transactions (Dec 2010 to D
 ## Tools
 
 - MySQL 8.0 (SQL: CTEs, window functions, conditional aggregation, joins)
+- Power BI (four-page dashboard)
 - Git and GitHub
-- Planned: Excel, Power BI and pandas for a dashboard and extra analysis
 
 ## Approach: layered tables
 
@@ -46,6 +48,8 @@ Rows are flagged with a reason instead of being deleted, so every exclusion can 
 | 8 | Country labels | 3 renamed | EIRE, RSA and USA standardized; Unspecified kept |
 | 9 | Prices with 3 decimals | 4 | Staging uses DECIMAL(10,3) so nothing is rounded |
 
+The evidence behind each decision is in `docs/decision-log.md`.
+
 ## Key findings
 
 All figures are net of returns unless stated, and every query result is reconciled to a trusted total.
@@ -60,6 +64,21 @@ All figures are net of returns unless stated, and every query result is reconcil
 8. **Timing.** Thursday is the busiest day, Sunday the quietest, and there are no Saturday orders. Orders peak at noon, and the hours from 10:00 to 15:59 account for about 78% of orders.
 9. **RFM segmentation.** Champions are 18.8% of customers but produce 63.2% of identified revenue, about 12 times the revenue per customer of the Lost segment. At Risk is small (20 customers) but consists of frequent buyers who have gone quiet.
 10. **Retention.** Among the January to October 2011 cohorts, 14.8% to 23.5% of new customers bought again the next month, and retention stays in a band of roughly 17% to 30% afterwards instead of decaying. The December 2010 cohort isn't comparable because the data starts on 2010-12-01.
+
+## Dashboard
+
+A four-page Power BI dashboard built on summary tables exported from the verified SQL queries, so every number on it matches the findings above.
+
+| Page | Shows |
+|---|---|
+| Overview | Net sales, return rate, orders and customers, with the monthly net sales trend |
+| Products | Top 10 products by net revenue and by net units sold |
+| Countries | Net sales by country (top 10) and the UK share |
+| Customers | Customers, average and median order value, and share of customers vs share of revenue by RFM segment |
+
+- **PDF version:** [`dashboard/online_retail_dashboard.pdf`](dashboard/online_retail_dashboard.pdf), viewable without Power BI.
+- **Power BI file:** `dashboard/online_retail_dashboard.pbix`. In Power BI Desktop, Ctrl+click the navigator buttons to switch pages. The file reads the summary tables in `dashboard/data/` from the author's local paths, so it can be viewed but its data cannot be refreshed on another computer without repointing the sources.
+- **Dashboard data:** `dashboard/data/` holds five small summary tables (monthly, country, product, RFM segment and headline numbers). The original dataset is not included.
 
 ## Business questions answered
 
@@ -81,6 +100,7 @@ All figures are net of returns unless stated, and every query result is reconcil
 ```
 sql/            numbered pipeline scripts, run in order (01 to 10)
 sql/analysis/   one script per business question (q01 to q10)
+dashboard/      Power BI file, PDF export, screenshot and the summary tables it reads
 data/           instructions for the dataset (the CSV itself is not committed)
 docs/           supporting notes and the decision log
 ```

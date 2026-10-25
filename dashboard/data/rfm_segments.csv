@@ -1,0 +1,9 @@
+segment,customers,revenue,avg_recency_days,avg_orders
+Champions,816,5366220.79,13,12.4
+Loyal,265,788988.90,67,7.2
+"Potential Loyalists",681,691224.56,16,2.9
+"About to Sleep",780,566856.23,117,2.0
+"Need Attention",689,525271.04,52,2.0
+Lost,847,440875.38,270,1.4
+"New Customers",235,75226.32,19,1.0
+"At Risk",20,36911.22,241,7.6
