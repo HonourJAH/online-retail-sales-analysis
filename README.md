@@ -51,6 +51,7 @@ Rows are flagged with a reason instead of being deleted, so every exclusion can 
 The evidence behind each decision is in `docs/decision-log.md`.
 
 ## Key findings
+Full write-ups for each question are in [`docs/findings.md`](docs/findings.md).
 
 All figures are net of returns unless stated, and every query result is reconciled to a trusted total.
 
